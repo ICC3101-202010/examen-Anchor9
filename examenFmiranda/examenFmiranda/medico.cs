@@ -22,8 +22,8 @@ namespace examenFmiranda
         }
 
         public int Exp { get => exp; set => exp = value; }
-
-        private void evaluate(int degree, jugador injured, List<jugador> principals, List<jugador> reserve, entrenador trainer ) 
+        public string Name { get => name; set => name = value; }
+        public void evaluate(int degree, jugador injured, List<jugador> principals, List<jugador> reserve, entrenador trainer ) 
         {
             if (degree < 2) 
             {
@@ -35,7 +35,7 @@ namespace examenFmiranda
             {
                 
                 
-                //aplicar cambio jugador por el dt
+               
             
             }
         

@@ -12,20 +12,24 @@ namespace examenFmiranda
         private int[] result = new int[2];
         private List<equipo> teams = new List<equipo>();
         private bool start = false;
-        private int actual;
 
         public partido(List<equipo> teams)
         {
-
-
             Teams = teams;
-
         }
 
         public DateTime Duration { get => duration; set => duration = value; }
-
         public List<equipo> Teams { get => teams; set => teams = value; }
 
+
+        //Metodo que le avisa al partido cuando un jugador es lesionado y se cambia el jugador
+
+        public void OnInjury(object source, EquipoEventArgs args)
+        {
+            args.Trainer.change_player(args.Reserve, args.Principals, args.Injured);
+
+        }
+        /*
         private void Check_team_type(List<equipo> teams)
         {
             if (teams[0].Liga == true && teams[1].Liga == true)
@@ -44,12 +48,16 @@ namespace examenFmiranda
 
 
         }
+        */
+
+        /*
         private void Final_statistics()
         {
             Console.WriteLine("Result: " + result);
             Console.WriteLine("Duration: " + duration);
 
         }
+        */
 
         public delegate void GoalEventHanlder(object source, EventArgs args); 
         public event GoalEventHanlder goal;
@@ -82,29 +90,8 @@ namespace examenFmiranda
 
 
         }
-        private void injuerd_player()
-        {
-            Random rnd = new Random();
-            int injury = rnd.Next(0, 101);
 
-            //si el porcentaje es menor a 16 entonces si o si habrá un lesionado
-            if (injury < 16)
-            {
-                int player = rnd.Next(0, 11); //jufgador lesionado
-                int degree = rnd.Next(1, 4); //grado de la lesion
-                int team = rnd.Next(1, 3); // equipo del jugador
-
-                jugador lesionado = Teams[team].Plantel[player];
-                lesionado.Injury = true;
-                Teams[team].Team_medic.evaluate(degree, lesionado);
-
-            }
-
-
-
-
-        }
-
+        /*
         private void play(List<equipo> teams)
         {
             this.Check_team_type(teams);
@@ -123,50 +110,9 @@ namespace examenFmiranda
 
 
         }
-        private void check_nationality(List<equipo> teams) 
-        {
-            foreach (equipo team in teams) 
-            {
-                int total = 11;
-                int cont = 0;
-                foreach (jugador player in team.Plantel)
-                {
-                    if (player.Nationality == team.Nationality)
-                    {
-                        cont++;
-
-                    }
-                    else if (player.Nationality != team.Nationality)
-                    {
-
-
-                    }
-
-
-                }
-
-                if (cont == total) 
-                {
-                    start = true;
-                    continue;
-                
-                }
-                else if (cont != total)
-                {
-                    start = false;
-                    break;
-
-                }
-
-
-
-
-            }
-
-        
-        
-        
-        }
+        *
+        */
+       
 
     }
 }

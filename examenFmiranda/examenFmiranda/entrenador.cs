@@ -22,7 +22,7 @@ namespace examenFmiranda
         }
 
         public int Tactic_points { get => tactic_points; set => tactic_points = value; }
-
+        public string Name { get => name; set => name = value; }
 
         public void change_player(List<jugador> reserve, List<jugador> principals, jugador injured)
         {

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="entrenador.cs" />
     <Compile Include="equipo.cs" />
+    <Compile Include="EquipoEventArgs.cs" />
     <Compile Include="jugador.cs" />
     <Compile Include="medico.cs" />
     <Compile Include="pantalla.cs" />
