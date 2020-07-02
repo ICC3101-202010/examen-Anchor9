@@ -12,5 +12,7 @@ namespace examenFmiranda
         protected int age;
         protected string nationality;
         protected int salary;
+
+
     }
 }

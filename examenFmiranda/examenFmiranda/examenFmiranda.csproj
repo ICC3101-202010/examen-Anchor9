@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="entrenador.cs" />
     <Compile Include="equipo.cs" />
     <Compile Include="jugador.cs" />
+    <Compile Include="medico.cs" />
+    <Compile Include="pantalla.cs" />
     <Compile Include="partido.cs" />
     <Compile Include="persona.cs" />
     <Compile Include="Program.cs" />
