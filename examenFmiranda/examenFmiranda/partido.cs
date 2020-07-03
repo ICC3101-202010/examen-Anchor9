@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace examenFmiranda
 {
     public class partido
     {
-        private DateTime duration;
+        private DateTime duration = new DateTime(0,0,0,1,30,0);
         private int[] result = new int[2];
         private List<equipo> teams = new List<equipo>();
-        private string mach_type;
+        private string match_type;
         private int start = 0;
+        private int min;
+        private int hour;
 
         public partido(equipo team1, equipo team2)
         {
@@ -29,6 +32,7 @@ namespace examenFmiranda
         public void OnInjury(object source, EquipoEventArgs args)
         {
             args.Trainer.change_player(args.Reserve, args.Principals, args.Injured);
+            Console.WriteLine(args.Injured.Name + "changed");
 
         }
         
@@ -38,14 +42,14 @@ namespace examenFmiranda
             {
 
                 start++;
-                mach_type = "League match";
+                match_type = "League match";
 
             }
             else if (teams[0].Liga == false && teams[1].Liga == false)
             {
                 //chequear nacionalidad
                 start++;
-                mach_type = "National match";
+                match_type = "National match";
 
 
 
@@ -82,6 +86,7 @@ namespace examenFmiranda
         }
         public void Goal()
         {
+            
             Random rnd = new Random();
             int random1 = rnd.Next(0, 101);
             if (random1 < 25)
@@ -98,6 +103,7 @@ namespace examenFmiranda
                     OnGoal();
                 }
             }
+            this.Final_statistics();
 
 
         }
@@ -105,14 +111,32 @@ namespace examenFmiranda
         
         public void play(List<equipo> teams)
         {
+            //Simula el 
             this.Check_team_type(teams);
             if (start != 0)
             {
-                result[0] = 0;
-                result[1] = 0;
-                teams[0].injuerd_player();
-                teams[1].injuerd_player();
-                this.Goal();
+                int m = duration.Minute;
+                int h = duration.Hour;
+                min = 0;
+                hour = 0;
+                while (hour < m && hour < h)
+                {
+                    result[0] = 0;
+                    result[1] = 0;
+                    teams[0].injuerd_player();
+                    teams[1].injuerd_player();
+                    this.Goal();
+                    min = 10 + min;
+                    Thread.Sleep(2000);
+                    if (min == 60) 
+                    {
+                        min = 0;
+                        hour = 1;
+                    
+                    }
+
+                }
+
 
 
 

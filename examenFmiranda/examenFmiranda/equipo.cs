@@ -164,7 +164,7 @@ namespace examenFmiranda
             {
                 Console.WriteLine("Name:" + player.Name);
                 Console.WriteLine("Age" + player.Age);
-                Console.WriteLine("Nstionality: " + player.Nationality);
+                Console.WriteLine("Nationality: " + player.Nationality);
                 Console.WriteLine(" ");
 
             }
