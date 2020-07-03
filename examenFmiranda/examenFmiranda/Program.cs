@@ -14,6 +14,7 @@ namespace examenFmiranda
             equipo e1 = new equipo("Arsenal","English",true);
             equipo e2 = new equipo("Leicestrer city", "English", true);
 
+            //Funcionalidad los metodos pedidos
             e1.add_player();
             e1.add_medic();
             e1.add_trainer();
