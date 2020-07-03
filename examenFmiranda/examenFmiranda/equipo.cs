@@ -18,13 +18,11 @@ namespace examenFmiranda
         private List<jugador> reserve = new List<jugador>();
         private bool liga;
 
-        public equipo() { }
-        public equipo(string name, string nationality, medico medic, entrenador trainer, bool liga)
+      
+        public equipo(string name, string nationality, bool liga)
         {
             Name = name;
             Nationality = nationality;
-            Team_medic = medic;
-            Team_trainer = trainer;
             Liga = liga;
 
         }
@@ -37,7 +35,7 @@ namespace examenFmiranda
         public List<jugador> Reserve { get => reserve; set => reserve = value; }
         internal entrenador Team_trainer { get => team_trainer; set => team_trainer = value; }
 
-        private void add_medic()
+        public void add_medic()
         {
             Console.WriteLine("Medic name");
             string name = Console.ReadLine();
@@ -55,6 +53,7 @@ namespace examenFmiranda
             int exp = Convert.ToInt32(Console.ReadLine());
 
             medico medic = new medico(name, age, nationality, salary, exp);
+            Console.Clear();
             team_medic = medic;
 
 
@@ -77,6 +76,7 @@ namespace examenFmiranda
             int tp = Convert.ToInt32(Console.ReadLine());
 
             entrenador trainer = new entrenador(name, age, nationality, salary, tp);
+            Console.Clear();
             team_trainer = trainer;
 
 
@@ -125,6 +125,7 @@ namespace examenFmiranda
 
 
             jugador player = new jugador(name, age, nationality, salary, ap, dp, number, gkp, position);
+            Console.Clear();
             this.check_player_nationality(player);
 
         }
@@ -141,9 +142,10 @@ namespace examenFmiranda
                 }
 
             }
-            else
+            else if (liga == true)
             {
-                Console.WriteLine("Can't add internaniotal player to national team");
+                plantel.Add(player);
+                
 
             }
 
@@ -153,15 +155,17 @@ namespace examenFmiranda
         public void show_team_info()
         {
             Console.WriteLine("Team name: " + Name);
-            Console.WriteLine("Team nationality" + Nationality);
-            Console.WriteLine("Team medic" + team_medic.Name);
-            Console.WriteLine("Team trainer" + team_trainer.Name);
+            Console.WriteLine("Team nationality: " + Nationality);
+            Console.WriteLine("Team medic: " + team_medic.Name);
+            Console.WriteLine("Team trainer: " + team_trainer.Name);
+            Console.WriteLine(" ");
             Console.WriteLine("PLAYERS:");
             foreach (jugador player in plantel)
             {
                 Console.WriteLine("Name:" + player.Name);
                 Console.WriteLine("Age" + player.Age);
                 Console.WriteLine("Nstionality: " + player.Nationality);
+                Console.WriteLine(" ");
 
             }
 

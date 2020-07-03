@@ -11,11 +11,13 @@ namespace examenFmiranda
         private DateTime duration;
         private int[] result = new int[2];
         private List<equipo> teams = new List<equipo>();
-        private bool start = false;
+        private string mach_type;
+        private int start = 0;
 
-        public partido(List<equipo> teams)
+        public partido(equipo team1, equipo team2)
         {
-            Teams = teams;
+            Teams.Add(team1);
+            Teams.Add(team2);
         }
 
         public DateTime Duration { get => duration; set => duration = value; }
@@ -29,35 +31,44 @@ namespace examenFmiranda
             args.Trainer.change_player(args.Reserve, args.Principals, args.Injured);
 
         }
-        /*
+        
         private void Check_team_type(List<equipo> teams)
         {
             if (teams[0].Liga == true && teams[1].Liga == true)
             {
 
-                start = true;
+                start++;
+                mach_type = "League match";
 
             }
             else if (teams[0].Liga == false && teams[1].Liga == false)
             {
                 //chequear nacionalidad
-                this.check_nationality(teams);
-                
+                start++;
+                mach_type = "National match";
 
+
+
+            }
+            else if (teams[0].Liga == false && teams[1].Liga == true || teams[0].Liga == false && teams[1].Liga == true) 
+            {
+
+                Console.WriteLine("Both teams have diferent type team");
+            
             }
 
 
         }
-        */
+        
 
-        /*
-        private void Final_statistics()
+        
+        public void Final_statistics()
         {
             Console.WriteLine("Result: " + result);
             Console.WriteLine("Duration: " + duration);
 
         }
-        */
+        
 
         public delegate void GoalEventHanlder(object source, EventArgs args); 
         public event GoalEventHanlder goal;
@@ -69,7 +80,7 @@ namespace examenFmiranda
                 goal(this, EventArgs.Empty); 
             }
         }
-        private void Goal()
+        public void Goal()
         {
             Random rnd = new Random();
             int random1 = rnd.Next(0, 101);
@@ -91,27 +102,32 @@ namespace examenFmiranda
 
         }
 
-        /*
-        private void play(List<equipo> teams)
+        
+        public void play(List<equipo> teams)
         {
             this.Check_team_type(teams);
-            if (start == true)
+            if (start != 0)
             {
+                result[0] = 0;
+                result[1] = 0;
+                teams[0].injuerd_player();
+                teams[1].injuerd_player();
+                this.Goal();
+
 
 
 
             }
-            else if (start == false)
+            else if (start == 0)
             {
 
-                //el partido no se puede continuar
+                Console.WriteLine("Unsupported match");
 
             }
 
 
         }
-        *
-        */
+
        
 
     }
